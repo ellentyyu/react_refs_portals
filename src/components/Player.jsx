@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-export default function Player() {
+const Player = () => {
     const [playerName, setPlayerName] = useState(null);
     const nameInput = useRef();
     const setNameHandler = () => {
@@ -18,3 +18,5 @@ export default function Player() {
         </section>
     );
 }
+
+export default Player;
