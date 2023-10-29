@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import ResultModal from "./ResultModal.jsx";
 
-const TimerChallenge = ({title, targetTime}) => {
+const TimerChallenge = ({ title, targetTime }) => {
     const timer = useRef();
     const dialog = useRef();
 
@@ -17,35 +17,43 @@ const TimerChallenge = ({title, targetTime}) => {
         timer.current = setInterval(() => {
             setTimeRemained((prevTimeRemained) => prevTimeRemained - 10);
         }, 10);
-    }
+    };
 
     const stopChallengeHandler = () => {
         clearInterval(timer.current);
         dialog.current.open();
-    }
+    };
 
     const resetHandler = () => {
         setTimeRemained(targetTime * 1000);
-    }
+    };
     return (
         <>
-            <ResultModal ref={dialog} targetTime={targetTime} timeRemained={timeRemained} onReset={resetHandler}/>
+            <ResultModal
+                ref={dialog}
+                targetTime={targetTime}
+                timeRemained={timeRemained}
+                onReset={resetHandler}
+            />
             <section className="challenge">
                 <h2>{title}</h2>
                 <p className="challenge-time">
-                    {targetTime} second{targetTime > 1 ? 's' : ''}
+                    {targetTime} second{targetTime > 1 ? "s" : ""}
                 </p>
                 <p>
-                    <button type="button" onClick={isTimerActive ? stopChallengeHandler : startChallengeHandler}>
-                        {isTimerActive ? 'Stop' : 'Start'} challenge
+                    <button
+                        type="button"
+                        onClick={isTimerActive ? stopChallengeHandler : startChallengeHandler}
+                    >
+                        {isTimerActive ? "Stop" : "Start"} challenge
                     </button>
                 </p>
-                <p className={isTimerActive ? 'active' : null}>
-                    {isTimerActive ? 'Time is running...' : 'Timer inactive'}
+                <p className={isTimerActive ? "active" : null}>
+                    {isTimerActive ? "Time is running..." : "Timer inactive"}
                 </p>
             </section>
         </>
-    )
-}
+    );
+};
 
-export default TimerChallenge
+export default TimerChallenge;
